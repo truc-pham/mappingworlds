@@ -26,3 +26,15 @@ plot(st_geometry(vn),     main = "EPSG:4326 (degrees)", axes = TRUE)
 plot(st_geometry(vn_utm), main = "EPSG:32648 (metres)", axes = TRUE, border = "blue")
 par(mfrow = c(1, 1))
 
+usa <- ne_countries(country = "United States of America",
+                    scale = "medium", returnclass = "sf")
+
+usa_main <- st_crop(usa, xmin = -125, ymin = 24, xmax = -66, ymax = 50)
+
+usa_albers <- st_transform(usa_main, crs = 5070)
+
+par(mfrow = c(1, 2))
+plot(st_geometry(usa_main),   main = "EPSG:4326 (degrees)", axes = TRUE)
+plot(st_geometry(usa_albers), main = "EPSG:5070 (Albers, metres)", axes = TRUE, border = "blue")
+par(mfrow = c(1, 1))
+
