@@ -29,6 +29,7 @@ vn <- filter(world, admin == "Vietnam")
 
 ggplot() +
   geom_sf(data = vn, fill = "grey90") +
+  geom_sf_text(aes(label = country), size = 3) +
   geom_sf(data = cities_sf, colour = "red", size = 3) +
   geom_sf_text(data = cities_sf, aes(label = name), nudge_x = 1.2, size = 3) +
   coord_sf(xlim = c(102, 112)) +
