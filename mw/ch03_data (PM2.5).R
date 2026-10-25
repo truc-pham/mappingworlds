@@ -1,5 +1,5 @@
 # Exercise: PM2.5 map for Southeast Asia
-
+pacman::p_load(sf, rnaturalearth, rnaturalearthdata, tidyverse, here, WDI)
 # 1. Path for the cached file
 pm_file <- here("data", "raw", "wb_pm25_2019.csv")
 
@@ -22,7 +22,12 @@ pm_clean <- pm |>
   filter(region != "Aggregates") |>
   select(country, iso3c, pm25) |>
   filter(!is.na(pm25))
+# Southeast Asia bounday
+sea <- ne_countries(scale = "medium", returnclass = "sf") |>
+  filter(subregion == "South-Eastern Asia") |>
+  select(adm0_a3, name)
 
+sea
 # 5. Join to the Southeast Asia map (sea already exists)
 sea_pm <- sea |>
   left_join(pm_clean, by = c("adm0_a3" = "iso3c"))
@@ -45,3 +50,6 @@ ggplot(sea_pm) +
        caption = "Data: World Bank WDI (EN.ATM.PM25.MC.M3); boundaries: Natural Earth",
        x = NULL, y = NULL) +
   theme_minimal()
+
+# Save map
+ggsave(here("out", "sea_pm25_2019.png"), width = 8, height = 6, dpi = 300)

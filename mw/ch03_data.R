@@ -46,4 +46,6 @@ ggplot(sea_forest) +
   theme_minimal()
 
 # Save
+# Save map
+ggsave(here("out", "sea_forest_2020.png"), width = 8, height = 6, dpi = 300)
 st_write(sea_forest, here("data", "derived", "sea_forest_2020.gpkg"), delete_dsn = TRUE)
