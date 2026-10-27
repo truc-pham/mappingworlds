@@ -17,3 +17,10 @@
   'object not found' in ggplot → layer had the wrong data
 - Data check: DEM had -128 m over Dau Tieng reservoir → clamp(lower = 0)
 - Idea: compare Ba Den at true scale vs 2x exaggeration
+
+## R1: R grammar basics — 2026-10-27
+- Learned: variables (<-), types (numeric/character/logical), vectors c(),
+  functions with options, selecting by position [3] vs by condition [x > 25], paste()
+- Mistakes + fixes: cities[max(temps)] gave NA (number = position) → use cities[temps == max(temps)];
+  print(quote = ...) does not add text → use paste()
+- Wrote all 13 exercises myself
