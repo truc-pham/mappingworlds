@@ -24,3 +24,9 @@
 - Mistakes + fixes: cities[max(temps)] gave NA (number = position) → use cities[temps == max(temps)];
   print(quote = ...) does not add text → use paste()
 - Wrote all 13 exercises myself
+
+## R2: tables and dplyr — 2026-10-28
+- Learned: tibble(), $ to get a column, |> as "then",
+  filter (rows), select (columns), mutate (new column), arrange/desc (sort), left_join (merge by key), %in% for many values
+- Mistakes + fixes: arrange(desc(density)) "is a function" → column not saved yet (mutate result must be assigned);
+  mean(vn, pop_m) → mean(vn$pop_m); filter on rain_mm before joining → join first; > vs >=
