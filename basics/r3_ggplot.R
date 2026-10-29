@@ -47,7 +47,14 @@ sea <- sea |>
     area_km2    = as.numeric(st_area(geometry)) / 1e6,
     pop_density = pop_est / area_km2
   )
+
+# 2. Map coloured by density (log scale)
 ggplot(sea) +
-  geom_sf(fill = "tomato", colour = )
+  geom_sf(aes(fill = pop_density), colour = "white") +
+  scale_fill_viridis_c(trans = "log10", labels = scales::label_comma()) +
+  labs(title = "Population density in Southeast Asia",
+       fill = "People per km²",
+       caption = "Data: Natural Earth") +
+  theme_minimal()
 
-
+ggsave("out/sea_density.png", width = 8, height = 6, dpi = 300)

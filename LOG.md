@@ -30,3 +30,11 @@
   filter (rows), select (columns), mutate (new column), arrange/desc (sort), left_join (merge by key), %in% for many values
 - Mistakes + fixes: arrange(desc(density)) "is a function" → column not saved yet (mutate result must be assigned);
   mean(vn, pop_m) → mean(vn$pop_m); filter on rain_mm before joining → join first; > vs >=
+  
+## R3: ggplot from scratch — 2026-10-28/29
+- Learned: ggplot builds in layers with +; aes() maps columns (inside) vs fixed values (outside);
+  fill for areas, colour for points/lines; geom_col, geom_point, geom_text_repel, geom_sf;
+  scale_*_brewer / viridis; trans = "log10" + label_comma(); work backwards from the goal to plan steps
+- Mistakes + fixes: fill = region on points → colour = region; fill inside and outside aes at once;
+  ggplot(sea) alone = empty canvas (needs geom_sf); old 'sea' object had no pop_est → recreate;
+  colour = with no value → "can't be empty"; pacman not found → open the .Rproj project
